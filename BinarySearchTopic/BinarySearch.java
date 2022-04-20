@@ -15,7 +15,7 @@ public class BinarySearch{
         while (start<=end){
         
             //int mid = (start+end)/2;   This might be possible that (start+end) will exceed the java integer range.
-            int mid = start+(end-start)/2;      //so,we use this expression.
+            int mid = start+(end-start)/2;     //so,we use this expression.
 
             if (arr[mid]<target){
                 start = mid+1;
