@@ -34,7 +34,8 @@ class FindInMountainArray {
     }
 
     public static int orderAgnosticBinarySearch1(int[] arr,int target,int start,int end){
-        if(arr[start]<=arr[end]){  
+        
+        if(arr[start]<=arr[end]){   //BINARY SEARCH FOR ASCENDING PART
             while(start<=end){
                 int mid=start+(end-start)/2;
                 if(arr[mid]<target)
@@ -46,7 +47,7 @@ class FindInMountainArray {
             }
         }
 
-        else if(arr[start]>arr[end]){
+        else if(arr[start]>arr[end]){   //BINARY SEARCH FOR DESCENDING PART
             while(start<=end){
                 int mid=start+(end-start)/2;
                 if(arr[mid]<target)
