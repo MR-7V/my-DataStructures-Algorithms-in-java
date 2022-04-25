@@ -1,3 +1,6 @@
+//81. Search in Rotated Sorted Array II
+//https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+
 public class RotatedSortedArrayWithDuplicates {
     public static void main(String[] args){
         int arr[]={4,5,6,7,0,1,2,3,3};
@@ -8,7 +11,7 @@ public class RotatedSortedArrayWithDuplicates {
 
 
     public static int search(int[] arr,int target){
-        int pivot = findPivotInRotatedArray(arr);
+        int pivot = findPivotInRotatedArrayWithDuplicates(arr);
         //if you did not found the pivot then the array is not rotated.
         if (pivot == -1)
             return binarySearch(arr, target, 0, arr.length-1);  //normal binary search.
@@ -24,7 +27,7 @@ public class RotatedSortedArrayWithDuplicates {
     }
 
 
-    public static int findPivotInRotatedArray(int[] arr){
+    public static int findPivotInRotatedArrayWithDuplicates(int[] arr){
         int start = 0;
         int end = arr.length-1;
         while(start<end){
@@ -87,7 +90,7 @@ NOTE:
 
 1.FIRST FIND THE PIVOT: AS IT IS SORTED ARRAY, IF ARRAY IS ROTATED THE LARGEST ELEMENT IS THE PIVOT IN ARRAY. 
     1.1 TO FIND THE PIVOT 4 CONDITIONS ARE THERE. 
-        TWO CONDITIONS RETURN PIVOT
+        TWO CONDITIONS TO RETURN PIVOT
         ONE CONDITION IF arr[start]==arr[mid]==arr[end]
         TWO CONDITIONS TO CHANGE START AND END
             HERE THERE MAY BE CHANCE THAT arr[start]==arr[mid].SO, MAKE REFERANCE OF END TO CHANGE THE START,END.
