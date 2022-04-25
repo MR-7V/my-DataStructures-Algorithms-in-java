@@ -1,10 +1,12 @@
 //81. Search in Rotated Sorted Array II
 //https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
 
+//NOTE: GIVES WRONG ANSWER IN SOME TESTCASES 
 public class RotatedSortedArrayWithDuplicates {
     public static void main(String[] args){
         int arr[]={4,5,6,7,0,1,2,3,3};
-        int target=3;
+        //int arr[]={1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1}; 
+        int target=2;
         int result = search(arr, target);
         System.out.println(result);
     }
@@ -50,16 +52,17 @@ public class RotatedSortedArrayWithDuplicates {
                 if(arr[end]<arr[end-1])
                     return end-1;
                 end--;
-                /*
-                NOTE FOR THIS LINE:
-                ACTUALLY WE ARE NOT CHECKING WHETHER END IS PIVOT HERE. 
-                IF END IS THE PIVOT THEN THE ARRAY IS NOT ROTATED.THE FUNCTION AUTOMATICALLY RETURNS -1. 
-                WE ARE JUST CHECKING THE CONDITION RELATED TO END BEFORE IGNORING END. (i.e.we are checking for end-1)
-                */
+                
+                //NOTE FOR THIS LINE:
+                //ACTUALLY WE ARE NOT CHECKING WHETHER END IS PIVOT HERE. 
+                //IF END IS THE PIVOT THEN THE ARRAY IS NOT ROTATED.THE FUNCTION AUTOMATICALLY RETURNS -1. 
+                //WE ARE JUST CHECKING THE CONDITION RELATED TO END BEFORE IGNORING END. (i.e.we are checking for end-1)
+                
             }
             
             //3---->CONDITONS TO CHANGE THE START OR END. 
             //THERE MAYBE CHANCE THAT START==MID.SO, WE TAKE REFERANCE OF END TO CHANGE START. 
+
             if(arr[start]<arr[mid] || (arr[start]==arr[mid] && arr[mid]>arr[end])){
                 start = mid+1;
             }else{              
@@ -84,8 +87,8 @@ public class RotatedSortedArrayWithDuplicates {
     }
 }
 
-/*
-25 APR 2022
+
+/*25 APR 2022
 NOTE:
 
 1.FIRST FIND THE PIVOT: AS IT IS SORTED ARRAY, IF ARRAY IS ROTATED THE LARGEST ELEMENT IS THE PIVOT IN ARRAY. 
@@ -100,5 +103,5 @@ NOTE:
     2.2 IF PIVOT != -1 THEN ARRAY IS ROTATED
         2.2.1 IF PIVOT ELEMENT == TARGET
         2.2.2 IF TARGERT >= START ELEMENT 
-        2.2.3 IF TARGET < START ELEMENT
+        2.2.3 IF TARGET < START ELEMENT        
 */
