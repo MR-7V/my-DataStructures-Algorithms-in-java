@@ -1,11 +1,7 @@
-//33. Search in Rotated Sorted Array(No Duplicate Elements)
-//https://leetcode.com/problems/search-in-rotated-sorted-array/
-
-class RotatedSortedArray {
+public class RotatedSortedArrayWithDuplicates {
     public static void main(String[] args){
-        //int arr[]={3,4,5,6,7,8,0,1,2};
-        int arr[]={3,1};
-        int target=1;
+        int arr[]={4,5,6,7,0,1,2,3,3};
+        int target=3;
         int result = search(arr, target);
         System.out.println(result);
     }
@@ -33,16 +29,38 @@ class RotatedSortedArray {
         int end = arr.length-1;
         while(start<end){
             int mid = start+(end-start)/2;
-            //Two return conditions
-            if(mid<end && arr[mid]>arr[mid+1])  //to avoid array index out of bound, make sure that mid<end
+            
+            //1---->TWO CONDITIONS TO RETURN PIVOT
+            if(mid<end && arr[mid]>arr[mid+1])  
                 return mid;
-            if(mid>start && arr[mid]<arr[mid-1])    //to avoid negitive indexing, make sure that mid>start
+            if(mid>start && arr[mid]<arr[mid-1])    
                 return mid-1;
-            //Two start,end changing conditions
-            if(arr[start]>=arr[mid]){
-                end = mid-1;
-            }else{              //if(arr[start]<arr[mid])
+            
+            //2---->CONDITION: IF arr[start]==arr[mid]==arr[end] THEN IGNORE DUPLICATES.(start++,end--)
+            if(arr[start] == arr[mid] && arr[mid]== arr[end]){
+                //NOTE: what if the start and end were the pivot, so check before ignore them..
+                //check if start is pivot
+                if(arr[start]>arr[start+1])
+                    return start;
+                start++;
+                //check if end-1 is pivot: 
+                if(arr[end]<arr[end-1])
+                    return end-1;
+                end--;
+                /*
+                NOTE FOR THIS LINE:
+                ACTUALLY WE ARE NOT CHECKING WHETHER END IS PIVOT HERE. 
+                IF END IS THE PIVOT THEN THE ARRAY IS NOT ROTATED.THE FUNCTION AUTOMATICALLY RETURNS -1. 
+                WE ARE JUST CHECKING THE CONDITION RELATED TO END BEFORE IGNORING END. (i.e.we are checking for end-1)
+                */
+            }
+            
+            //3---->CONDITONS TO CHANGE THE START OR END. 
+            //THERE MAYBE CHANCE THAT START==MID.SO, WE TAKE REFERANCE OF END TO CHANGE START. 
+            if(arr[start]<arr[mid] || (arr[start]==arr[mid] && arr[mid]>arr[end])){
                 start = mid+1;
+            }else{              
+                end = mid-1;;
             }
         }
         return -1;
@@ -64,13 +82,15 @@ class RotatedSortedArray {
 }
 
 /*
-24 APR 2022
+25 APR 2022
 NOTE:
 
 1.FIRST FIND THE PIVOT: AS IT IS SORTED ARRAY, IF ARRAY IS ROTATED THE LARGEST ELEMENT IS THE PIVOT IN ARRAY. 
     1.1 TO FIND THE PIVOT 4 CONDITIONS ARE THERE. 
         TWO CONDITIONS RETURN PIVOT
+        ONE CONDITION IF arr[start]==arr[mid]==arr[end]
         TWO CONDITIONS TO CHANGE START AND END
+            HERE THERE MAY BE CHANCE THAT arr[start]==arr[mid].SO, MAKE REFERANCE OF END TO CHANGE THE START,END.
 
 2.NOW APPLY BINARY SEARCH
     2.1 IF PIVOT NOT FOUND THEN ARRAY IS NOT ROTATED: APPLY BINARY SEARCH TO WHOLE ARRAY.
