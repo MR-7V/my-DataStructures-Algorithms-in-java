@@ -1,11 +1,11 @@
 //81. Search in Rotated Sorted Array II
 //https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
 
-//NOTE: GIVES WRONG ANSWER IN SOME TESTCASES 
+//NOTE: IN SOME TEST CASES OF THE ARRAY IS EXCEEDING THE ARRAY SIZE. 
 public class RotatedSortedArrayWithDuplicates {
     public static void main(String[] args){
-        int arr[]={4,5,6,7,0,1,2,3,3};
-        //int arr[]={1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1}; 
+        //int arr[]={4,5,6,7,0,1,2,3,3};
+        int arr[]={1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1}; 
         int target=2;
         int result = search(arr, target);
         System.out.println(result);
@@ -45,14 +45,15 @@ public class RotatedSortedArrayWithDuplicates {
             if(arr[start] == arr[mid] && arr[mid]== arr[end]){
                 //NOTE: what if the start and end were the pivot, so check before ignore them..
                 //check if start is pivot
-                if(arr[start]>arr[start+1])
-                    return start;
-                start++;
-                //check if end-1 is pivot: 
-                if(arr[end]<arr[end-1])
-                    return end-1;
-                end--;
-                
+                while(arr[start]==arr[end]){
+                    if(arr[start]>arr[start+1])
+                        return start;
+                    start++;
+                    //check if end-1 is pivot: 
+                    if(arr[end]<arr[end-1])
+                        return end-1;
+                    end--;
+                }
                 //NOTE FOR THIS LINE:
                 //ACTUALLY WE ARE NOT CHECKING WHETHER END IS PIVOT HERE. 
                 //IF END IS THE PIVOT THEN THE ARRAY IS NOT ROTATED.THE FUNCTION AUTOMATICALLY RETURNS -1. 
