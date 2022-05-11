@@ -53,6 +53,4 @@ class MinimumNumberofFibonacciNumbersWhoseSumIsK{
         numbers = findFib(k);
         System.out.println(search(numbers,k));
     }
-
-
 }
