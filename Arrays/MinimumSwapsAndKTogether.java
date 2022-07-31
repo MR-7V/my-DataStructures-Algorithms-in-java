@@ -1,5 +1,7 @@
-class MinimumSwapsAndKTogether{
+//we use silding window
+//https://practice.geeksforgeeks.org/problems/minimum-swaps-required-to-bring-all-elements-less-than-or-equal-to-k-together4847/1
 
+class MinimumSwapsAndKTogether{
     public static void main(String args[]){
         int arr[] = {2, 7, 9, 5, 8, 7, 4};
         int n = arr.length;
