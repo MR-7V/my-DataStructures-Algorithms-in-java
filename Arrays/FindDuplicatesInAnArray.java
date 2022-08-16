@@ -1,9 +1,8 @@
+////https://practice.geeksforgeeks.org/problems/find-duplicates-in-an-array/1
+
 import java.util.ArrayList;
 
-//https://practice.geeksforgeeks.org/problems/find-duplicates-in-an-array/1
-
 public class FindDuplicatesInAnArray {
-
     public static void main(String[] args) {
         ArrayList<Integer> al = new ArrayList<>();
         int[] arr = { 1, 2, 3, 3, 4, 5, 6, 1, 3, 2 };
